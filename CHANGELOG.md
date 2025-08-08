@@ -20,3 +20,6 @@ git push origin main
 ## 2025-08-08
 - Files changed: 01_Repair_Kit.md, 03_Examples_Library.md, 04_Lyric_Toolkit.md, 05_Test_Suite_Prompts.md, 09_Genre_Mix_Targets.md
 - Summary: Auto-generated changelog entry
+## 2025-08-08
+- Files changed: README.md
+- Summary: Auto-generated changelog entry
