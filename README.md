@@ -5,7 +5,7 @@ Suno Songmaker Pro on ChatGPT:
 https://chatgpt.com/g/g-68964db414a08191aaa3248a8801373f-suno-ai-song-generator
 
 Maintainer: @HGFantasy
-Latest bundle: v1.2 (2025-08-08)
+Latest bundle: v1.2.1 (2025-08-09)
 
 
 
