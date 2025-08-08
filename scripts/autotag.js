@@ -44,6 +44,7 @@ const semver = require('semver');
         body: 'Baseline version created automatically.',
         prerelease: false
       });
+      latestTag = 'v1.2.0'; // Ensure we bump from this baseline
     }
 
     console.log(`Latest tag detected: ${latestTag}`);
@@ -53,6 +54,12 @@ const semver = require('semver');
     const commitData = await octokit.rest.repos.getCommit({ owner, repo, ref: commitSha });
     const changedFiles = commitData.data.files.map(f => f.filename);
     console.log("Changed files:", changedFiles);
+
+    // Avoid infinite loop: skip if only CHANGELOG.md changed from previous auto-run
+    if (changedFiles.length === 1 && changedFiles[0] === 'CHANGELOG.md') {
+      console.log("Only CHANGELOG.md was updated — skipping version bump to avoid loop.");
+      return;
+    }
 
     // File classification rules
     const finalFiles = [
