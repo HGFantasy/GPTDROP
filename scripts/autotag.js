@@ -83,8 +83,12 @@ const semver = require('semver');
     let isFinal = changedFiles.some(f => finalFiles.includes(f));
     let isContentOnly = changedFiles.every(f => contentFiles.includes(f) || finalFiles.includes(f) || f === 'CHANGELOG.md' || f.startsWith('.github/'));
 
-    // Normalize and bump version
-    const baseVersion = latestTag.replace(/^v/, '');
+    // Normalize version: convert v1.2 -> v1.2.0
+    let baseVersion = latestTag.replace(/^v/, '');
+    if (!/^\d+\.\d+\.\d+$/.test(baseVersion)) {
+      baseVersion += '.0';
+    }
+
     let newVersion = semver.inc(baseVersion, 'patch');
 
     // Add beta suffix if content-only change
@@ -129,25 +133,41 @@ const semver = require('semver');
       branch: 'main'
     });
 
-    // Create a new tag
-    await octokit.rest.git.createRef({
-      owner,
-      repo,
-      ref: `refs/tags/${tagName}`,
-      sha: commitSha
-    });
+    // Create a new tag (skip if exists)
+    try {
+      await octokit.rest.git.createRef({
+        owner,
+        repo,
+        ref: `refs/tags/${tagName}`,
+        sha: commitSha
+      });
+    } catch (e) {
+      if (e.status === 422) {
+        console.log(`Tag ${tagName} already exists — skipping tag creation.`);
+      } else {
+        throw e;
+      }
+    }
 
     // Create a GitHub release
-    await octokit.rest.repos.createRelease({
-      owner,
-      repo,
-      tag_name: tagName,
-      name: tagName,
-      body: changelogEntry,
-      prerelease: tagName.includes('-beta')
-    });
+    try {
+      await octokit.rest.repos.createRelease({
+        owner,
+        repo,
+        tag_name: tagName,
+        name: tagName,
+        body: changelogEntry,
+        prerelease: tagName.includes('-beta')
+      });
+      console.log(`Release ${tagName} created successfully.`);
+    } catch (e) {
+      if (e.status === 422) {
+        console.log(`Release for ${tagName} already exists — skipping.`);
+      } else {
+        throw e;
+      }
+    }
 
-    console.log(`Release ${tagName} created successfully.`);
   } catch (error) {
     core.setFailed(error.message);
   }
