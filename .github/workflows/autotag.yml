@@ -22,5 +22,7 @@ jobs:
       - name: Install dependencies
         run: npm install @actions/core @actions/github semver
 
-      - name: Run AutoTag Script
+         - name: Run AutoTag Script
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: node scripts/autotag.js
