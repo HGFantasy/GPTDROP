@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
 
 jobs:
   autotag:
@@ -14,8 +13,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0  # Fetch all tags
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -25,16 +22,5 @@ jobs:
       - name: Install dependencies
         run: npm install @actions/core @actions/github semver
 
-      - name: Debug info
-        run: |
-          echo "Branch: ${{ github.ref }}"
-          echo "Commit: ${{ github.sha }}"
-          echo "Repo: ${{ github.repository }}"
-          echo "Event: ${{ github.event_name }}"
-          git log --oneline -n 5
-          git tag --list
-
       - name: Run AutoTag Script
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: node scripts/autotag.js
