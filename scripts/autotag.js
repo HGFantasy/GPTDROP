@@ -13,12 +13,40 @@ const semver = require('semver');
 
     // Get latest release to determine starting version
     let latestTag = 'v1.2.0';
+    let foundTag = false;
     try {
       const latestRelease = await octokit.rest.repos.getLatestRelease({ owner, repo });
-      latestTag = latestRelease.tag_name;
+      if (latestRelease && latestRelease.data && latestRelease.data.tag_name) {
+        latestTag = latestRelease.data.tag_name;
+        foundTag = true;
+      } else {
+        console.log("No release tag found, starting from v1.2.0");
+      }
     } catch (e) {
       console.log("No existing releases found, starting from v1.2.0");
     }
+
+    // If no tag found at all, create baseline v1.2.0 tag
+    if (!foundTag) {
+      const commitSha = github.context.sha;
+      console.log(`Creating baseline tag v1.2.0 at commit ${commitSha}`);
+      await octokit.rest.git.createRef({
+        owner,
+        repo,
+        ref: 'refs/tags/v1.2.0',
+        sha: commitSha
+      });
+      await octokit.rest.repos.createRelease({
+        owner,
+        repo,
+        tag_name: 'v1.2.0',
+        name: 'v1.2.0',
+        body: 'Baseline version created automatically.',
+        prerelease: false
+      });
+    }
+
+    console.log(`Latest tag detected: ${latestTag}`);
 
     // Get changed files in the push
     const commitSha = github.context.sha;
@@ -46,15 +74,11 @@ const semver = require('semver');
     ];
 
     let isFinal = changedFiles.some(f => finalFiles.includes(f));
-    let isContentOnly = changedFiles.every(f => contentFiles.includes(f) || finalFiles.includes(f) || f === 'CHANGELOG.md');
+    let isContentOnly = changedFiles.every(f => contentFiles.includes(f) || finalFiles.includes(f) || f === 'CHANGELOG.md' || f.startsWith('.github/'));
 
-    // Version bump rules
-    let newVersion;
-    if (semver.valid(latestTag)) {
-      newVersion = semver.inc(latestTag, 'patch');
-    } else {
-      newVersion = semver.inc(latestTag.replace(/^v/, ''), 'patch');
-    }
+    // Normalize and bump version
+    const baseVersion = latestTag.replace(/^v/, '');
+    let newVersion = semver.inc(baseVersion, 'patch');
 
     // Add beta suffix if content-only change
     if (!isFinal && isContentOnly) {
@@ -70,7 +94,22 @@ const semver = require('semver');
 - Summary: Auto-generated changelog entry
 `;
 
+    // Ensure CHANGELOG.md exists
+    if (!fs.existsSync('CHANGELOG.md')) {
+      fs.writeFileSync('CHANGELOG.md', '');
+    }
     fs.appendFileSync('CHANGELOG.md', changelogEntry);
+
+    // Get SHA of existing changelog file (if it exists in repo)
+    let changelogSha = undefined;
+    try {
+      const changelogFile = await octokit.rest.repos.getContent({ owner, repo, path: 'CHANGELOG.md' });
+      if (!Array.isArray(changelogFile.data)) {
+        changelogSha = changelogFile.data.sha;
+      }
+    } catch (e) {
+      console.log("CHANGELOG.md not found in repo, creating new.");
+    }
 
     // Commit the changelog update
     await octokit.rest.repos.createOrUpdateFileContents({
@@ -79,7 +118,7 @@ const semver = require('semver');
       path: 'CHANGELOG.md',
       message: `${tagName} — auto-generated changelog`,
       content: Buffer.from(fs.readFileSync('CHANGELOG.md')).toString('base64'),
-      sha: (await octokit.rest.repos.getContent({ owner, repo, path: 'CHANGELOG.md' })).data.sha,
+      sha: changelogSha,
       branch: 'main'
     });
 
