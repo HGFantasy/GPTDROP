@@ -70,3 +70,21 @@ Version: v1.0 (2025-08-08)
 ### Reverb/Space
 - If wash-y: shorten reverb pre-delay and decay; call “**de-harsh hats; leave ~1 dB headroom**” in Style.  
 - Avoid long tails under dense drops; reserve long decay for the **[2-bar tail]**.
+
+**AR1 — DnB drift (too slow)**  
+Append to Style: “**BPM = 172; rolling breaks from bar 1; warm mono sub; no halftime**.”
+
+**AR2 — Pop without pre-chorus lift**  
+Append to Arrangement: “**[Verse 12] [Pre 8 (harmony rises + drum fill)] [Chorus 16]**.”
+
+**AR3 — Synthwave too wet**  
+Append to Style: “**Drums dry with gated room only; analog polys; chorus bass; no long tail verbs**.”
+
+**AR4 — Pop-punk with EDM hats**  
+Append to Avoid: “**No EDM/trap hats; no risers; keep rock kit**.”
+
+**AR5 — Acoustic getting dense**  
+Append to Style: “**≤7 major elements; ride vocal; mute for dynamics; no EDM synth stacks**.”
+
+**AR6 — Hardstyle missing staging**  
+Append to Style: “**Drop: first 8 bars kick+bass only → add metallic screech + supersaws later; 4/4; no halftime; no 808s**.”

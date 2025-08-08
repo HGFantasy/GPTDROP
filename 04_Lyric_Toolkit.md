@@ -266,3 +266,20 @@ Vuelvo a ti • Quédate aquí • En la luz • Cuéntame ya • A casa a ti
 ## Pronoun‑Neutral Options
 - “Back to **you**” works universally.  
 - “Stay with **me**” avoids gendering; add names only if requested.
+
+---
+
+## Genre Hook Shapes (quick picks)
+- **Dance-Pop:** 6–8 short lines; 2–3 word tag repeated; light city-night imagery.  
+- **Melodic EDM:** 6–8 lines; emotive verbs; post-chorus vocal chop (2–3 words).  
+- **Liquid DnB:** 4 lines; airy, hopeful; two-line tag variation.  
+- **Synthwave:** 4–6 lines; one nostalgic image + one motion verb.  
+- **Lofi/Acoustic:** 2–4 lines; intimate; simple household/home imagery.  
+- **Pop-Punk:** 4–8 lines; rhyme-forward; witty twist; gang tag last.  
+- **Cinematic:** 4–8 lines; collective “we”; resilient language.
+
+## Imagery Pairing Cheats
+- **City night:** streetlights, windows, taxis → pair with **drive/run/find** verbs.  
+- **Journey:** road, lines, horizon → pair with **stay/carry/hold**.  
+- **Home:** doorway, coffee, key → pair with **stay/call/wait**.  
+- **Hope:** dawn, first light, open door → pair with **rise/make/try**.

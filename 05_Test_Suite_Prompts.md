@@ -108,3 +108,29 @@ Pass if: post uses arp/melody without vocal chops; chorus remains short/repeatab
 **T23 — Duet Pop**: passes if A/B call-and-response in verse; unified chorus.  
 **T24 — Bilingual Chorus (EN + target)**: passes if both versions fit ≤9 syllables/line.  
 **T25 — Headroom/Harshness**: passes if Style mentions `leave ~1 dB headroom; de-harsh hats`.
+
+---
+
+## Genre Tempo/Arrangement Checks (add to all tests)
+- **Tempo Range:** Verify BPM is within the genre guardrail in 09_Genre_Mix_Targets.md. If not, FAIL and auto-retry with corrected BPM.  
+- **Arrangement Shape:** Dance-Pop/Melodic EDM must show [Verse→Pre→Chorus] with a distinct **pre-chorus lift**. Liquid DnB must use **rolling drums** from bar 1 of chorus.
+
+### T26 — Dance-Pop (pre-lift check)
+Prompt: “Dance-Pop 124 BPM, A minor; city night; female airy; short chorus.”  
+Pass if: pre-chorus has a 2-stage lift (drum fill + harmony rise); BPM=110–128 guardrail.
+
+### T27 — Liquid DnB (tempo guardrail)
+Prompt: “Liquid DnB, stars imagery, soft piano.”  
+Pass if: BPM 170–175; rolling drums; mono sub; no halftime drop.
+
+### T28 — Synthwave crossover (dry drums)
+Prompt: “Synth-pop crossover, 112 BPM, analog polys, minimal reverb on drums.”  
+Pass if: gated rooms only; dry-ish kit; chorus bass with light chorus; no modern trap hats.
+
+### T29 — Pop-Punk gang tag
+Prompt: “Pop-punk 168 BPM; summer nostalgia; gang tag at end.”  
+Pass if: gang vocal tag appears in final chorus; mono bass; no EDM/trap drums.
+
+### T30 — Acoustic pop (sparse elements)
+Prompt: “Acoustic pop 98 BPM; intimate; piano + guitar only.”  
+Pass if: ≤7 major elements; doubles in chorus; arrangement dynamics via mutes.

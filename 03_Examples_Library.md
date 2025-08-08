@@ -310,3 +310,54 @@ When it breaks, we’ll name the dawn
 
 **Alt take:**  
 **We stand— against the storm**
+
+--
+
+## 13) Disco-Pop (123 BPM, B minor) — “Night Drive”
+**Style:**  
+Dance-Pop | 123 BPM | Key B minor | nu-disco bass + bright pluck arp + piano comps | two-stage pre-chorus lift (drum fill + harmony rise) | clean kick; tight clap 2/4 | sung-only; stacked harmonies | mono sub 40–80 Hz; HPF @100 Hz
+
+**Avoid:**  
+- trap hats/808 slides; dubstep/riddim wubs; halftime  
+- long intros; spoken VO
+
+**Arrangement:**  
+[Intro 4] [Verse 12] [Pre 8 (lift)] [Chorus 16] [Post 8 (vocal chop: “drive with you”)] [Verse 12] [Pre 8] [Chorus 16] [Bridge 8] [Final Chorus 16 + tag] [2-bar tail]
+
+**Lyrics — “Night Drive”**  
+Windows down, we cross the line  
+Every sign says you are mine  
+Count me in, I’ll follow through  
+Name the street—I’m next to you  
+**Drive all night with you**  
+**All night with you**  
+If we spin, we see it through  
+**Drive all night with you**
+
+**Alt take:**  
+**All night— with you**
+
+---
+
+## 14) Synth-Pop Crossover (112 BPM, F# minor) — “City Lines”
+**Style:**  
+Synth-pop crossover | 112 BPM | Key F# minor | analog polys + arp motif + chorus bass | dry kit with gated room; subtle tape sat | sung-only hooks | mono sub; HPF non-bass @100 Hz
+
+**Avoid:**  
+- modern trap hats/808 slides; dubstep wubs; hardstyle leads
+
+**Arrangement:**  
+[Intro 4] [Verse 16] [Pre 8] [Chorus 16] [Post 8] [Verse 16] [Pre 8] [Chorus 16] [Bridge 8] [Final Chorus 16] [2-bar tail]
+
+**Lyrics — “City Lines”**  
+Rearview holds yesterday  
+Streetlight marks every lane  
+Say the word and I’ll align  
+Walk with me on city lines  
+**Back to you, back to you**  
+**Back to you, back to you**  
+If we drift, we’ll find the sign  
+**Back to you, back to you**
+
+**Alt take:**  
+**Back to you— tonight**
